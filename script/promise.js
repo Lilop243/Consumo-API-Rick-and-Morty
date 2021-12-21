@@ -1,4 +1,9 @@
-const API = 'https://rickandmortyapi.com/api/character/';
+const API = 'https://rickandmortyapi.com/api/character?page=2';
+const CHARACTER_URL = 'https://rickandmortyapi.com/api/character/?name=';
+
+const form = document.getElementById('form');
+const search = document.getElementById('search');
+const h1 = document.querySelector("h1");
 
 const getData = (apiURL) => {
     return fetch(apiURL)
@@ -30,3 +35,24 @@ const printData = (data) => {
 }
 
 getData(API)
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    ///console.log(submit);
+
+    const term = search.value;
+    if (term && term !== "") {
+        getData(CHARACTER_URL + term);
+        search.value = ""
+    }
+
+    else{
+        window.location.reload();
+    }
+})
+
+h1.addEventListener("click", () => {
+    
+});
+
